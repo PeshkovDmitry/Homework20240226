@@ -2,8 +2,10 @@ package ru.gb.principal;
 
 public interface PrincipalBehavior {
     
-    Integer openDoor(Integer playerSelectedDoor);
+    int openDoor(int playerSelectedDoor);
 
-    Integer getPrizeDoor();
+    int showPrizeDoor();
+
+    void choosePrizeDoor();
 
 }

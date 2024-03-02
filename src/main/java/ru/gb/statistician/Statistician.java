@@ -11,15 +11,15 @@ public class Statistician implements StatisticianBehavior{
     }
 
     @Override
-    public void addResult(Integer result) {
+    public void addResult(int result) {
         stats.addValue(result);
     }
 
     @Override
     public void printStatistics() {
-        Long count = stats.getN();
-        Long win = Math.round(stats.getSum());
-        Double percentOfWin = stats.getMean();
+        long count = stats.getN();
+        long win = Math.round(stats.getSum());
+        double percentOfWin = stats.getMean();
         System.out.printf(
             "Проведено %d игр, из них выиграно %d. Процент выигрыша - %f\n\r", count, win, percentOfWin);
     }

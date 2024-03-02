@@ -2,10 +2,10 @@ package ru.gb.player;
 
 public interface PlayerBehavior {
     
-    Integer selectDoor();
+    int selectDoor();
 
-    Integer changeSelection(Integer openedByPrincipalDoor);
+    int changeSelection(int openedByPrincipalDoor);
 
-    Integer getSelectedDoor();
+    int getSelectedDoor();
 
 }

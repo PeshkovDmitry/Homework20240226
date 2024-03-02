@@ -2,7 +2,7 @@ package ru.gb.statistician;
 
 public interface StatisticianBehavior {
 
-    void addResult(Integer result);
+    void addResult(int result);
 
     void printStatistics();
 

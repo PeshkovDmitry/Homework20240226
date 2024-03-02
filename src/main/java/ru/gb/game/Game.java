@@ -8,9 +8,9 @@ import ru.gb.statistician.StatisticianBehavior;
 @AllArgsConstructor
 public class Game implements GameBehavior {
 
-    public static final Integer NUMBER_OF_DOORS = 3;
+    public static final int NUMBER_OF_DOORS = 3;
 
-    private Integer iterationCount;
+    private int iterationCount;
 
     private PlayerBehavior player;
 
@@ -21,10 +21,19 @@ public class Game implements GameBehavior {
     @Override
     public void run() {
         while (iterationCount-- > 0) {
-            Integer playerSelectedDoor = player.getSelectedDoor();
-            Integer principalOpenedDoor = principal.openDoor(playerSelectedDoor);
-            playerSelectedDoor = player.changeSelection(principalOpenedDoor);
-            statistician.addResult(playerSelectedDoor == principal.getPrizeDoor() ? 1 : 0);            
+            principal.choosePrizeDoor();
+            int playerSelectedDoor = player.selectDoor();
+            int principalOpenedDoor = principal.openDoor(playerSelectedDoor);
+            int playerNewSelectedDoor = player.changeSelection(principalOpenedDoor);
+            int prizeDoor = principal.showPrizeDoor();
+            statistician.addResult(playerNewSelectedDoor == prizeDoor ? 1 : 0);            
+            // System.out.printf(
+            //     "%d: игрок выбрал дверь %d, ведущий открыл дверь %d, игрок передумал и выбрал дверь %d, ведущий спрятал приз за дверью %d\n\r", 
+            //     iterationCount,
+            //     playerSelectedDoor,
+            //     principalOpenedDoor,
+            //     playerNewSelectedDoor,
+            //     prizeDoor);
         }
     }
 
