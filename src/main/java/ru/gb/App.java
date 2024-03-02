@@ -1,6 +1,15 @@
 package ru.gb;
 
-import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+import java.util.Random;
+
+import ru.gb.game.Game;
+import ru.gb.game.GameBehavior;
+import ru.gb.player.PlayerBehavior;
+import ru.gb.player.Player;
+import ru.gb.principal.Principal;
+import ru.gb.principal.PrincipalBehavior;
+import ru.gb.statistician.Statistician;
+import ru.gb.statistician.StatisticianBehavior;
 
 
 /**
@@ -12,23 +21,13 @@ public class App
 {
     public static void main( String[] args )
     {
-        int[] inputArray = new int[] {1,2,3,4,5};
-        
-        // Get a DescriptiveStatistics instance
-        DescriptiveStatistics stats = new DescriptiveStatistics();
-
-        // Add the data from the array
-        for( int i = 0; i < inputArray.length; i++) {
-                stats.addValue(inputArray[i]);
-        }
-
-        // Compute some statistics
-        double mean = stats.getMean();
-        double std = stats.getStandardDeviation();
-        double median = stats.getPercentile(50);
-
-        System.out.println(mean + " " + std + " " + median);
-
-        System.out.println("Привет!");
+        PlayerBehavior player = new Player();
+        PrincipalBehavior principal = new Principal(
+            new Random().nextInt(Game.NUMBER_OF_DOORS)
+        );
+        StatisticianBehavior statistician = new Statistician();
+        GameBehavior game = new Game(10000 ,player, principal, statistician);
+        game.run();
+        game.printResult();
     }
 }
