@@ -2,17 +2,19 @@ package ru.gb.principal;
 
 import java.util.Random;
 
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import ru.gb.game.Game;
+import ru.gb.App;
 
 @ToString
+@EqualsAndHashCode
 public class Principal implements PrincipalBehavior {
 
     private int prizeDoor;
 
     @Override
     public int openDoor(int playerSelectedDoor) {
-        for (int i = 0; i < Game.NUMBER_OF_DOORS; i++) {
+        for (int i = 0; i < App.NUMBER_OF_DOORS; i++) {
             if ((i != prizeDoor) && (i != playerSelectedDoor)) {
                 return i;
             }
@@ -27,7 +29,7 @@ public class Principal implements PrincipalBehavior {
 
     @Override
     public void choosePrizeDoor() {
-        this.prizeDoor = new Random().nextInt(Game.NUMBER_OF_DOORS);
+        this.prizeDoor = new Random().nextInt(App.NUMBER_OF_DOORS);
     }
     
 }

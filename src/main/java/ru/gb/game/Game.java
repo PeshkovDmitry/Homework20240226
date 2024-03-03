@@ -1,14 +1,16 @@
 package ru.gb.game;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import ru.gb.player.PlayerBehavior;
 import ru.gb.principal.PrincipalBehavior;
 import ru.gb.statistician.StatisticianBehavior;
 
 @AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Game implements GameBehavior {
-
-    public static final int NUMBER_OF_DOORS = 3;
 
     private int iterationCount;
 
@@ -27,13 +29,6 @@ public class Game implements GameBehavior {
             int playerNewSelectedDoor = player.changeSelection(principalOpenedDoor);
             int prizeDoor = principal.showPrizeDoor();
             statistician.addResult(playerNewSelectedDoor == prizeDoor ? 1 : 0);            
-            // System.out.printf(
-            //     "%d: игрок выбрал дверь %d, ведущий открыл дверь %d, игрок передумал и выбрал дверь %d, ведущий спрятал приз за дверью %d\n\r", 
-            //     iterationCount,
-            //     playerSelectedDoor,
-            //     principalOpenedDoor,
-            //     playerNewSelectedDoor,
-            //     prizeDoor);
         }
     }
 
